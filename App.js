@@ -4,12 +4,21 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing';
 import uploadToAnonymousFilesAsync from 'anonymous-files';
 import * as SplashScreen from 'expo-splash-screen';
+import { useFonts } from 'expo-font';
 
 SplashScreen.preventAutoHideAsync();
-  setTimeout(SplashScreen.hideAsync, 5000);
+setTimeout(SplashScreen.hideAsync, 5000);
 
 export default function App() {
   const [selectedImage, setSelectedImage] = React.useState(null);
+
+  const [loaded] = useFonts({
+    Montserrat: require('./assets/fonts/Montserrat-Regular.ttf')
+  });
+
+  if (!loaded) {
+    return null;
+  }
 
   let openImagePickerAsync = async () => {
     let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -83,6 +92,7 @@ const styles = StyleSheet.create({
   instructions: {
     color: '#888',
     fontSize: 18,
+    fontFamily: 'Montserrat',
     marginHorizontal: 15,
   }, 
   button: {
@@ -92,6 +102,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 20,
+    fontFamily: 'Montserrat',
     color: '#fff',
   }, 
 });
