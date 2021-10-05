@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "AwesomeProjectSimple",
+    "slug": "AwesomeProjectSimple",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "AwesomeProjectSimple",
+  "splash": {
+    "image": "./assets/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#000000"
+  }
+}
