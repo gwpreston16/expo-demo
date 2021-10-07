@@ -20,6 +20,10 @@ export default function App() {
     return null;
   }
 
+  let clearImage = () => {
+    setSelectedImage(null);
+  };
+
   let openImagePickerAsync = async () => {
     let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -57,6 +61,9 @@ export default function App() {
         <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
         <TouchableOpacity onPress={openShareDialogAsync} style={styles.button}>
           <Text style={styles.buttonText}>Share this photo</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={clearImage} style={styles.button}>
+          <Text style={styles.buttonText}>Clear photo</Text>
         </TouchableOpacity>
       </View>
     );
