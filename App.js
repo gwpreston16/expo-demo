@@ -46,6 +46,24 @@ export default function App() {
     } 
   };
 
+  let openCameraAsync = async () => {
+    let permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+
+    if(permissionResult.granted === false) {
+      alert("Permission to access your camera is required!");
+      return;
+    }
+
+    let pickerResult = await ImagePicker.launchCameraAsync();
+
+    if(pickerResult.cancelled === true) {
+      return;
+    }
+
+    setSelectedImage({ localUri: pickerResult.uri, remoteUri: null });
+
+  };
+
   let openShareDialogAsync = async () => {
     if (!(await Sharing.isAvailableAsync())) {
       alert(`The image is available for sharing at: ${selectedImage.remoteUri}`);
@@ -75,10 +93,11 @@ export default function App() {
       <Text style={styles.instructions}>
         To share a photo from your phone with a friend, just press the button below!
       </Text>
-      <TouchableOpacity
-        onPress={openImagePickerAsync}
-        style={styles.button}>
+      <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
         <Text style={styles.buttonText}>Pick a photo</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={openCameraAsync} style={styles.button}>
+        <Text style={styles.buttonText}>Open your camera</Text>
       </TouchableOpacity>
     </View>
   );
