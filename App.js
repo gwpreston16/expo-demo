@@ -60,7 +60,12 @@ export default function App() {
       return;
     }
 
-    setSelectedImage({ localUri: pickerResult.uri, remoteUri: null });
+    if(Platform.OS === 'web') {
+      alert("This feature is not support!");
+    }
+    else {
+      setSelectedImage({ localUri: pickerResult.uri, remoteUri: null });
+    }
 
   };
 
