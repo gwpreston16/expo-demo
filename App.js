@@ -47,6 +47,11 @@ export default function App() {
   };
 
   let openCameraAsync = async () => {
+    if(Platform.OS === 'web') {
+      alert("This feature is not support!");
+      return;
+    }
+
     let permissionResult = await ImagePicker.requestCameraPermissionsAsync();
 
     if(permissionResult.granted === false) {
@@ -60,12 +65,7 @@ export default function App() {
       return;
     }
 
-    if(Platform.OS === 'web') {
-      alert("This feature is not support!");
-    }
-    else {
-      setSelectedImage({ localUri: pickerResult.uri, remoteUri: null });
-    }
+    setSelectedImage({ localUri: pickerResult.uri, remoteUri: null });
 
   };
 
