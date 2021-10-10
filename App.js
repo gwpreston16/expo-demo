@@ -5,6 +5,7 @@ import * as Sharing from 'expo-sharing';
 import uploadToAnonymousFilesAsync from 'anonymous-files';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
+import Button from './button';
 
 SplashScreen.preventAutoHideAsync();
 setTimeout(SplashScreen.hideAsync, 5000);
@@ -82,12 +83,18 @@ export default function App() {
     return (
       <View style={styles.container}>
         <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
-        <TouchableOpacity onPress={openShareDialogAsync} style={styles.button}>
-          <Text style={styles.buttonText}>Share this photo</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={clearImage} style={styles.button}>
-          <Text style={styles.buttonText}>Clear photo</Text>
-        </TouchableOpacity>
+        <Button 
+          text="Share this photo" 
+          onPress={openShareDialogAsync} 
+          textStyles={styles.buttonText} 
+          buttonStyles={styles.button} 
+        />
+        <Button 
+          text="Clear photo" 
+          onPress={clearImage} 
+          textStyles={styles.buttonText} 
+          buttonStyles={styles.button} 
+        />
       </View>
     );
   }
@@ -98,12 +105,18 @@ export default function App() {
       <Text style={styles.instructions}>
         To share a photo from your phone with a friend, just press the button below!
       </Text>
-      <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
-        <Text style={styles.buttonText}>Pick a photo</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={openCameraAsync} style={styles.button}>
-        <Text style={styles.buttonText}>Open your camera</Text>
-      </TouchableOpacity>
+      <Button 
+        text="Pick a photo" 
+        onPress={openImagePickerAsync} 
+        textStyles={styles.buttonText} 
+        buttonStyles={styles.button} 
+      />
+      <Button 
+        text="Open your camera" 
+        onPress={openCameraAsync} 
+        textStyles={styles.buttonText} 
+        buttonStyles={styles.button} 
+      /> 
     </View>
   );
 }
